@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.3.0
+
+### Minor Changes
+
+- 05ed80e: Added image functionality
+
 ## 0.2.1
 
 ### Patch Changes
