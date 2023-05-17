@@ -1,5 +1,5 @@
 import { Component } from "react";
-import style from "./Commands.Module.css";
+import style from "./Commands.module.css";
 
 type CommandItem = {
   name: string;
