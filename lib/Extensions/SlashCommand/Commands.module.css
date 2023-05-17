@@ -6,6 +6,8 @@
   padding: 4px;
   width: 20rem;
   background-color: var(--editor-menu-background);
+  height: 30vh;
+  overflow: auto;
 }
 
 .item {
@@ -15,7 +17,7 @@
   border-radius: 10px;
   margin-bottom: 10px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */
   border: none;
   background-color: transparent;
   padding: 10px;

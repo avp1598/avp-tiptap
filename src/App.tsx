@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Editor from "../lib/Editor";
 import "../lib/Editor.css";
-import CommandList from "../lib/Utils/SlashCommand/CommandList";
-import { SlashCommands } from "../lib/Utils/SlashCommand/constants";
+import CommandList from "../lib/Extensions/SlashCommand/CommandList";
+import { SlashCommands } from "../lib/Extensions/SlashCommand/constants";
 import "./App.css";
+import { Editor } from "../lib";
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -82,11 +82,21 @@ function App() {
         Switch theme
       </button>
       <Editor
-        value="<p>hello world</p>"
+        // theme="dark"
+        value={`<img src="https://picsum.photos/400/600" media-type="img" width="181" height="271.5" dataalign="end">`}
         onChange={(value) => console.log(value)}
         onReady={() => console.log("ready")}
         onBlur={() => console.log("blur")}
         onFocus={() => console.log("focus")}
+        placeholder="Enter the description in the richest text possible"
+        uploadImage={(file) => {
+          console.log({ file });
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve("https://picsum.photos/400/600");
+            }, 4000);
+          });
+        }}
       />
       <div
         style={{

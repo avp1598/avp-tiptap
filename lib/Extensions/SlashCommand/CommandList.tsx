@@ -23,14 +23,14 @@ class CommandList extends Component<{
     }
   }
 
-  onKeyDown({ event }: { event: any }) {
+  onKeyDown({ event, component }: { event: any; component: HTMLElement }) {
     if (event.key === "ArrowUp") {
-      this.upHandler();
+      this.upHandler(component);
       return true;
     }
 
     if (event.key === "ArrowDown") {
-      this.downHandler();
+      this.downHandler(component);
       return true;
     }
 
@@ -42,18 +42,32 @@ class CommandList extends Component<{
     return false;
   }
 
-  upHandler() {
+  upHandler(component: Element) {
+    const newIndex = (this.state.selectedIndex - 1) % this.props.items.length;
     this.setState({
-      selectedIndex:
-        (this.state.selectedIndex + this.props.items.length - 1) %
-        this.props.items.length,
+      selectedIndex: newIndex < 0 ? this.props.items.length - 1 : newIndex,
     });
+    const item = component.firstChild?.childNodes[newIndex] as Element;
+    if (item) {
+      item.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
   }
 
-  downHandler() {
+  downHandler(component: Element) {
+    const newIndex = (this.state.selectedIndex + 1) % this.props.items.length;
     this.setState({
-      selectedIndex: (this.state.selectedIndex + 1) % this.props.items.length,
+      selectedIndex: newIndex,
     });
+    const item = component.firstChild?.childNodes[newIndex] as Element;
+    if (item) {
+      item.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
   }
 
   enterHandler() {
@@ -71,10 +85,12 @@ class CommandList extends Component<{
   render() {
     const { items } = this.props;
     return (
-      <div className={style.menu}>
+      <div className={style.menu} tabIndex={0} role="menu">
         {items.map((item, index) => {
           return (
             <button
+              tabIndex={-1}
+              id={`command-${index}`}
               className={`${style.item} ${
                 index === this.state.selectedIndex ? style.selected : ""
               }`}
