@@ -1,9 +1,11 @@
 import { defineConfig } from "tsup";
 import cssModulesPlugin from "esbuild-css-modules-plugin";
+import { sassPlugin } from "esbuild-sass-plugin";
 
 export default defineConfig({
-  // @ts-expect-error - bug due to inconsistent esbuild versions
-  esbuildPlugins: [cssModulesPlugin()],
+  esbuildPlugins: [cssModulesPlugin(), sassPlugin()],
+  splitting: true,
+  minify: true,
   format: ["cjs", "esm"],
   injectStyle: true,
 });

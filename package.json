@@ -23,9 +23,22 @@
     "css-check": "ts-node --esm ./scripts/css-check.ts"
   },
   "dependencies": {
+    "@tiptap/core": "^2.0.3",
+    "@tiptap/extension-color": "^2.0.3",
+    "@tiptap/extension-list-item": "^2.0.3",
+    "@tiptap/extension-placeholder": "^2.0.3",
+    "@tiptap/extension-task-item": "^2.0.3",
+    "@tiptap/extension-task-list": "^2.0.3",
+    "@tiptap/extension-text-style": "^2.0.3",
+    "@tiptap/pm": "^2.0.3",
+    "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
+    "@tiptap/suggestion": "^2.0.3",
+    "esbuild-sass-plugin": "^2.9.0",
     "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",

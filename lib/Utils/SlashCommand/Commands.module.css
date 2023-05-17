@@ -1,0 +1,57 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--editor-menu-box-shadow);
+  border-radius: 10px;
+  padding: 4px;
+  width: 20rem;
+  background-color: var(--editor-menu-background);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.image {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  margin-right: 10px;
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 100%;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--editor-menu-item-text);
+}
+
+.description {
+  margin-top: 2px;
+  font-size: 12px;
+  color: rgba(138, 138, 138, 255);
+}
+
+.item:hover {
+  background-color: var(--editor-menu-item-hover);
+}
+
+.selected {
+  background-color: var(--editor-menu-item-hover);
+}
