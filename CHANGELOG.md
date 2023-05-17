@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.2.1
+
+### Patch Changes
+
+- fc329ba: css and types
+
 ## 0.2.0
 
 ### Minor Changes
