@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import Placeholder from "@tiptap/extension-placeholder";
 import { ResizableMedia } from "./Extensions/ResizableMedia";
 import Gapcursor from "@tiptap/extension-gapcursor";
+import Link from "@tiptap/extension-link";
+import Bubble from "./Components/Bubble";
+import Highlight from "@tiptap/extension-highlight";
+import Youtube from "@tiptap/extension-youtube";
 
 type EditorProps = {
   value: string;
@@ -69,6 +73,9 @@ export const Editor = ({
         },
       }),
       Gapcursor,
+      Link,
+      Highlight,
+      Youtube.configure(),
     ],
     editorProps: {
       handlePaste: function (view, event) {
@@ -201,8 +208,10 @@ export const Editor = ({
   });
 
   useEffect(() => {
+    console.log({ log: "theme use effect effect", theme });
     const root = document.documentElement;
     if (theme === "light") {
+      console.log("light");
       // change css variables
       root.style.setProperty("--editor-menu-item-text", "rgb(25, 25, 25)");
       root.style.setProperty("--editor-menu-item-hover", "rgb(235,235,235)");
@@ -220,6 +229,8 @@ export const Editor = ({
       root.style.setProperty("--app-background", "rgb(235, 235, 235)");
       root.style.setProperty("--app-color", "rgb(25, 25, 25)");
     } else {
+      console.log("black");
+
       // change css variables
       root.style.setProperty("--editor-menu-item-text", "rgb(213, 213, 213)");
       root.style.setProperty("--editor-menu-item-hover", "rgb(49, 49, 49)");
@@ -240,7 +251,12 @@ export const Editor = ({
   }, [theme]);
 
   if (editor) {
-    return <EditorContent editor={editor} />;
+    return (
+      <>
+        <EditorContent editor={editor} />
+        <Bubble editor={editor} />
+      </>
+    );
   }
   return null;
 };

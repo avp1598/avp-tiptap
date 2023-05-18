@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --editor-menu-item-text: rgb(213, 213, 213);
   --editor-menu-item-hover: rgb(49, 49, 49);
   --editor-menu-background: rgb(37, 37, 37);
@@ -7,13 +7,13 @@
   --editor-list-checked-text: rgb(97, 97, 97);
   --editor-code-background: rgba(97, 97, 255, 0.9);
   --editor-spacing: 0.75rem;
-}
+} */
 
 .ProseMirror > * + * {
-  margin-top: var(--editor-spacing);
+  margin-top: 0.75rem;
 }
 .ProseMirror p {
-  margin: var(--editor-spacing) 0;
+  margin: 0.75rem 0;
 }
 .ProseMirror ul,
 .ProseMirror ol {
@@ -27,19 +27,21 @@
 .ProseMirror h6 {
   line-height: 1.1;
 }
-.ProseMirror pre {
-  background: var(--editor-code-background);
-  color: var(--editor-text);
-  font-family: "JetBrainsMono", monospace;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+
+.ProseMirror a {
+  color: rgb(191, 90, 242);
+  cursor: pointer;
 }
-.ProseMirror pre code {
-  color: inherit;
-  padding: 0;
-  background: none;
-  font-size: 0.8rem;
+
+.ProseMirror code {
+  background-color: rgba(#616161, 0.1);
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  color: #616161;
+  font-size: 0.9rem;
+  padding: 0.25em;
 }
+
 .ProseMirror img {
   max-width: 100%;
   height: auto;
@@ -55,7 +57,7 @@
 }
 
 .ProseMirror p.is-empty::before {
-  color: rgb(130,130,130);
+  color: rgb(130, 130, 130);
   content: attr(data-placeholder);
   float: left;
   height: 0;
@@ -63,11 +65,11 @@
 }
 
 .media-node-view {
-  transition-property: all; 
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   display: flex;
   width: 100%;
 }
@@ -76,7 +78,6 @@
   width: fit-content;
   display: flex;
   position: relative;
-  
 }
 
 .media-node-view .justify-center {
@@ -91,19 +92,19 @@
   justify-content: flex-start;
 }
 
-
-
 .horizontal-resize-handle {
   position: absolute;
   top: 40%;
-  right: .25rem;
+  right: 0.25rem;
   z-index: 50;
   height: 6rem;
-  width: .625rem;
+  width: 0.625rem;
   --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   cursor: col-resize;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   background-color: #000;
 }
 
@@ -111,22 +112,25 @@
   display: flex;
   position: absolute;
   cursor: pointer;
-  top: .5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
   box-sizing: border-box;
   overflow: hidden;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(226 232 240 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);
-  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
+    0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transition-property: all;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
-  transition-duration: .2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
   transition-timing-function: linear;
 }
 
@@ -143,13 +147,59 @@
   cursor: pointer;
   color: rgb(107, 114, 128);
   transition-property: all;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
-  transition-duration: .2s;
-  transition-timing-function: linear; 
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
 }
 
 .media-control-buttons button:hover {
-  background-color: rgb(20, 20, 20,0.1);
+  background-color: rgb(20, 20, 20, 0.1);
+}
+
+.bubble-menu-container {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid rgb(226, 232, 240); */
+  box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.2) 0px 3px 6px, rgba(15, 15, 15, 0.4) 0px 9px 24px;
+  border-radius: 0.25rem;
+  padding: 1.75px;
+  background-color: var(--editor-menu-background);
+}
+
+.bubble-menu-button {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(107, 114, 128);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  border-radius: 0.25rem;
+}
+
+.bubble-menu-button:hover {
+  color: var(--editor-menu-item-text);
+}
+
+.bubble-menu-input {
+  width: 100%;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(107, 114, 128);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
 }
 
 ul[data-type="taskList"] {
@@ -174,7 +224,6 @@ li[data-checked="true"] {
   color: var(--editor-list-checked-text);
   text-decoration: line-through;
 }
-
 
 .i-mdi-delete {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24' display='inline-block' vertical-align='middle' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12Z'/%3E%3C/svg%3E");
