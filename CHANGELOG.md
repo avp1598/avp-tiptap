@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.4.0
+
+### Minor Changes
+
+- 88184e1: yt embeds and bubble menu
+
 ## 0.3.0
 
 ### Minor Changes
