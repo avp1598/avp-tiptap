@@ -41,7 +41,6 @@ const getSuggestionItems = (query: any) => {
     {
       title: "image",
       command: ({ editor, range }: any) => {
-        console.log("call some function from parent");
         editor.chain().focus().deleteRange(range).setNode("paragraph").run();
       },
     },

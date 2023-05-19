@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewWrapper } from "@tiptap/react";
-import { resizableMediaActions } from "./resizableMediaMenuUtil";
+import { resizableMediaActions } from "./resizableImageMenu";
 
-// ! had to manage this state outside of the component because `useState` isn't fast enough and creates problem cause
-// ! the function is getting old data even though new data is set by `useState` before the execution of function
 let lastClientX: number;
 
 export const ResizableMediaNodeView = ({

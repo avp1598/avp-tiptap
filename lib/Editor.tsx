@@ -6,12 +6,13 @@ import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import { useEffect } from "react";
 import Placeholder from "@tiptap/extension-placeholder";
-import { ResizableMedia } from "./Extensions/ResizableMedia";
+import { ResizableMedia } from "./Extensions/ResizableImage";
 import Gapcursor from "@tiptap/extension-gapcursor";
-import Link from "@tiptap/extension-link";
 import Bubble from "./Components/Bubble";
 import Highlight from "@tiptap/extension-highlight";
-import Youtube from "@tiptap/extension-youtube";
+import { ResizableEmbed } from "./Extensions/ResizableEmbed";
+import Link from "@tiptap/extension-link";
+import BubbleMenu from "@tiptap/extension-bubble-menu";
 
 type EditorProps = {
   value: string;
@@ -22,6 +23,7 @@ type EditorProps = {
   onReady?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  embedBoundsSelector?: string;
 };
 
 export const Editor = ({
@@ -33,6 +35,7 @@ export const Editor = ({
   uploadImage,
   placeholder = "Start typing and enter  for commands",
   theme = "light",
+  embedBoundsSelector = "",
 }: EditorProps) => {
   const editor = useEditor({
     onUpdate: ({ editor }) => {
@@ -48,7 +51,11 @@ export const Editor = ({
       onFocus && onFocus();
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        dropcursor: {
+          color: theme === "dark" ? "white" : "black",
+        },
+      }),
       TaskList,
       TaskItem.configure({
         nested: true,
@@ -75,7 +82,17 @@ export const Editor = ({
       Gapcursor,
       Link,
       Highlight,
-      Youtube.configure(),
+      ResizableEmbed.configure({
+        boundsSelector: embedBoundsSelector,
+      }),
+      BubbleMenu.configure({
+        shouldShow: ({ editor }) => {
+          return (
+            !editor.isActive("resizableMedia") &&
+            !editor.isActive("resizableEmbed")
+          );
+        },
+      }),
     ],
     editorProps: {
       handlePaste: function (view, event) {
@@ -164,7 +181,7 @@ export const Editor = ({
                 // valid image so upload to server
                 // uploadImage will be your function to upload the image to the server or s3 bucket somewhere
                 uploadImage?.(file)
-                  .then(function (response) {
+                  .then((response) => {
                     // response is the image url for where it has been saved
                     // pre-load the image before responding so loading indicators can stay
                     // and swaps out smoothly when image is ready
@@ -173,16 +190,22 @@ export const Editor = ({
                     image.onload = function () {
                       // place the now uploaded image in the editor where it was dropped
                       const { schema } = view.state;
+                      const coordinates = view.posAtCoords({
+                        left: event.clientX,
+                        top: event.clientY,
+                      });
                       if (!schema.nodes.resizableMedia) return;
                       const node = schema.nodes.resizableMedia.create({
                         src: response,
                         "media-type":
                           file.type.indexOf("image") === 0 ? "img" : "video",
                       });
-
-                      const transaction =
-                        view.state.tr.replaceSelectionWith(node);
-                      view.dispatch(transaction);
+                      if (!coordinates) return;
+                      const transaction = view.state.tr.insert(
+                        coordinates.pos,
+                        node
+                      ); // places it in the correct position
+                      return view.dispatch(transaction);
                     };
                   })
                   .catch(function (error) {
@@ -208,10 +231,8 @@ export const Editor = ({
   });
 
   useEffect(() => {
-    console.log({ log: "theme use effect effect", theme });
     const root = document.documentElement;
     if (theme === "light") {
-      console.log("light");
       // change css variables
       root.style.setProperty("--editor-menu-item-text", "rgb(25, 25, 25)");
       root.style.setProperty("--editor-menu-item-hover", "rgb(235,235,235)");
@@ -229,8 +250,6 @@ export const Editor = ({
       root.style.setProperty("--app-background", "rgb(235, 235, 235)");
       root.style.setProperty("--app-color", "rgb(25, 25, 25)");
     } else {
-      console.log("black");
-
       // change css variables
       root.style.setProperty("--editor-menu-item-text", "rgb(213, 213, 213)");
       root.style.setProperty("--editor-menu-item-hover", "rgb(49, 49, 49)");

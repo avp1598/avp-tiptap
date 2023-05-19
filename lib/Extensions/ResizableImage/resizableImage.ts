@@ -1,7 +1,7 @@
 import { mergeAttributes, Node, nodeInputRule } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 
-import { ResizableMediaNodeView } from "./ResizableMediaNodeView";
+import { ResizableMediaNodeView } from "./ResizableImageNodeView";
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {

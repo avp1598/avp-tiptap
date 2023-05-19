@@ -202,6 +202,11 @@
   transition-timing-function: linear;
 }
 
+.ProseMirror iframe {
+  border: 0px solid #000;
+  border-radius: 10px;
+}
+
 ul[data-type="taskList"] {
   list-style: none;
   padding: 0;

@@ -1,0 +1,5 @@
+---
+"avp-tiptap": minor
+---
+
+embeds
