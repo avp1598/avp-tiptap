@@ -22,8 +22,8 @@
   cursor: pointer;
 }
 
-.react-beautiful-editor .ProseMirror code {
-  background-color: rgba(#616161, 0.1);
+.react-beautiful-editor .ProseMirror pre {
+  background-color: #0d0d0d;
   border-radius: 0.25em;
   box-decoration-break: clone;
   color: #616161;
