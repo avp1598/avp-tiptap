@@ -8,6 +8,7 @@ const ResizableEmbedNodeView = ({
   node,
   updateAttributes,
   extension,
+  editor,
 }: NodeViewProps) => {
   const src = node.attrs.src;
   const embedType = node.attrs.embedType;
@@ -45,12 +46,14 @@ const ResizableEmbedNodeView = ({
           overflow: embedType === "twitter" ? "auto" : "hidden",
         }}
         onResize={(e, direction, ref) => {
-          setWidth(ref.style.width);
-          setHeight(ref.style.height);
-          updateAttributes({
-            width: ref.style.width,
-            height: ref.style.height,
-          });
+          if (editor.isEditable) {
+            setWidth(ref.style.width);
+            setHeight(ref.style.height);
+            updateAttributes({
+              width: ref.style.width,
+              height: ref.style.height,
+            });
+          }
         }}
         lockAspectRatio
         dragAxis="x"

@@ -6,7 +6,7 @@ import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import { useEffect } from "react";
 import Placeholder from "@tiptap/extension-placeholder";
-import { ResizableMedia } from "./Extensions/ResizableImage";
+import { ResizableImage } from "./Extensions/ResizableImage";
 import Gapcursor from "@tiptap/extension-gapcursor";
 import Bubble from "./Components/Bubble";
 import Highlight from "@tiptap/extension-highlight";
@@ -24,6 +24,7 @@ type EditorProps = {
   onBlur?: () => void;
   onFocus?: () => void;
   embedBoundsSelector?: string;
+  readonly?: boolean;
 };
 
 export const Editor = ({
@@ -36,6 +37,7 @@ export const Editor = ({
   placeholder = "Start typing and enter  for commands",
   theme = "light",
   embedBoundsSelector = "",
+  readonly = false,
 }: EditorProps) => {
   const editor = useEditor({
     onUpdate: ({ editor }) => {
@@ -74,7 +76,7 @@ export const Editor = ({
           return placeholder;
         },
       }),
-      ResizableMedia.configure({
+      ResizableImage.configure({
         uploadFn: async (image) => {
           return await uploadImage(image);
         },
@@ -88,7 +90,7 @@ export const Editor = ({
       BubbleMenu.configure({
         shouldShow: ({ editor }) => {
           return (
-            !editor.isActive("resizableMedia") &&
+            !editor.isActive("resizableImage") &&
             !editor.isActive("resizableEmbed")
           );
         },
@@ -121,8 +123,8 @@ export const Editor = ({
                   uploadImage(file)
                     .then(function (response) {
                       const { schema } = view.state;
-                      if (!schema.nodes.resizableMedia) return;
-                      const node = schema.nodes.resizableMedia.create({
+                      if (!schema.nodes.resizableImage) return;
+                      const node = schema.nodes.resizableImage.create({
                         src: response,
                         "media-type":
                           file.type.indexOf("image") === 0 ? "img" : "video",
@@ -194,8 +196,8 @@ export const Editor = ({
                         left: event.clientX,
                         top: event.clientY,
                       });
-                      if (!schema.nodes.resizableMedia) return;
-                      const node = schema.nodes.resizableMedia.create({
+                      if (!schema.nodes.resizableImage) return;
+                      const node = schema.nodes.resizableImage.create({
                         src: response,
                         "media-type":
                           file.type.indexOf("image") === 0 ? "img" : "video",
@@ -228,53 +230,80 @@ export const Editor = ({
       },
     },
     content: value,
+    editable: !readonly,
   });
 
   useEffect(() => {
     const root = document.documentElement;
     if (theme === "light") {
       // change css variables
-      root.style.setProperty("--editor-menu-item-text", "rgb(25, 25, 25)");
-      root.style.setProperty("--editor-menu-item-hover", "rgb(235,235,235)");
-      root.style.setProperty("--editor-menu-background", "rgb(255, 255, 255)");
       root.style.setProperty(
-        "--editor-menu-box-shadow",
+        "--react-beautiful-editor-menu-item-text",
+        "rgb(25, 25, 25)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-item-hover",
+        "rgb(235,235,235)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-background",
+        "rgb(255, 255, 255)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-box-shadow",
         "rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px"
       );
-      root.style.setProperty("--editor-divider", "rgb(0, 0, 0,0.1)");
       root.style.setProperty(
-        "--editor-list-checked-text",
+        "--react-beautiful-editor-divider",
+        "rgb(0, 0, 0,0.1)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-list-checked-text",
         "rgb(170, 170, 170)"
       );
-      root.style.setProperty("--editor-code-background", "rgb(255, 255, 255)");
-      root.style.setProperty("--app-background", "rgb(235, 235, 235)");
-      root.style.setProperty("--app-color", "rgb(25, 25, 25)");
+      root.style.setProperty(
+        "--react-beautiful-editor-code-background",
+        "rgb(255, 255, 255)"
+      );
     } else {
       // change css variables
-      root.style.setProperty("--editor-menu-item-text", "rgb(213, 213, 213)");
-      root.style.setProperty("--editor-menu-item-hover", "rgb(49, 49, 49)");
-      root.style.setProperty("--editor-menu-background", "rgb(37, 37, 37)");
       root.style.setProperty(
-        "--editor-menu-box-shadow",
+        "--react-beautiful-editor-menu-item-text",
+        "rgb(213, 213, 213)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-item-hover",
+        "rgb(49, 49, 49)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-background",
+        "rgb(37, 37, 37)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-menu-box-shadow",
         "rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 3px 6px, rgba(15, 15, 15, 0.4) 0px 9px 24px"
       );
-      root.style.setProperty("--editor-divider", "rgba(255, 255, 255, 0.1)");
-      root.style.setProperty("--editor-list-checked-text", "rgb(97, 97, 97)");
       root.style.setProperty(
-        "--editor-code-background",
+        "--react-beautiful-editor-divider",
+        "rgba(255, 255, 255, 0.1)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-list-checked-text",
+        "rgb(97, 97, 97)"
+      );
+      root.style.setProperty(
+        "--react-beautiful-editor-code-background",
         "rgba(97, 97, 97, 0.1)"
       );
-      root.style.setProperty("--app-background", "rgb(25, 25, 25)");
-      root.style.setProperty("--app-color", "rgba(255, 255, 255, 0.7)");
     }
   }, [theme]);
 
   if (editor) {
     return (
-      <>
+      <div className="react-beautiful-editor">
         <EditorContent editor={editor} />
         <Bubble editor={editor} />
-      </>
+      </div>
     );
   }
   return null;

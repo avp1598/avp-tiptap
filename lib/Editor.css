@@ -1,39 +1,28 @@
-/* :root {
-  --editor-menu-item-text: rgb(213, 213, 213);
-  --editor-menu-item-hover: rgb(49, 49, 49);
-  --editor-menu-background: rgb(37, 37, 37);
-  --editor-menu-box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 3px 6px, rgba(15, 15, 15, 0.4) 0px 9px 24px
-  --editor-divider: rgba(255, 255, 255, 0.1);
-  --editor-list-checked-text: rgb(97, 97, 97);
-  --editor-code-background: rgba(97, 97, 255, 0.9);
-  --editor-spacing: 0.75rem;
-} */
-
-.ProseMirror > * + * {
+.react-beautiful-editor .ProseMirror > * + * {
   margin-top: 0.75rem;
 }
-.ProseMirror p {
+.react-beautiful-editor .ProseMirror p {
   margin: 0.75rem 0;
 }
-.ProseMirror ul,
-.ProseMirror ol {
+.react-beautiful-editor .ProseMirror ul,
+.react-beautiful-editor .ProseMirror ol {
   padding: 0 1rem;
 }
-.ProseMirror h1,
-.ProseMirror h2,
-.ProseMirror h3,
-.ProseMirror h4,
-.ProseMirror h5,
-.ProseMirror h6 {
+.react-beautiful-editor .ProseMirror h1,
+.react-beautiful-editor .ProseMirror h2,
+.react-beautiful-editor .ProseMirror h3,
+.react-beautiful-editor .ProseMirror h4,
+.react-beautiful-editor .ProseMirror h5,
+.react-beautiful-editor .ProseMirror h6 {
   line-height: 1.1;
 }
 
-.ProseMirror a {
+.react-beautiful-editor .ProseMirror a {
   color: rgb(191, 90, 242);
   cursor: pointer;
 }
 
-.ProseMirror code {
+.react-beautiful-editor .ProseMirror code {
   background-color: rgba(#616161, 0.1);
   border-radius: 0.25em;
   box-decoration-break: clone;
@@ -42,21 +31,21 @@
   padding: 0.25em;
 }
 
-.ProseMirror img {
+.react-beautiful-editor .ProseMirror img {
   max-width: 100%;
   height: auto;
 }
-.ProseMirror hr {
+.react-beautiful-editor .ProseMirror hr {
   border: none;
-  border-top: 2px solid var(--editor-divider);
+  border-top: 2px solid var(--react-beautiful-editor-divider);
   margin: 2rem 0;
 }
 
-.ProseMirror-focused {
+.react-beautiful-editor .ProseMirror-focused {
   outline: none;
 }
 
-.ProseMirror p.is-empty::before {
+.react-beautiful-editor .ProseMirror p.is-empty::before {
   color: rgb(130, 130, 130);
   content: attr(data-placeholder);
   float: left;
@@ -64,7 +53,7 @@
   pointer-events: none;
 }
 
-.media-node-view {
+.react-beautiful-editor .resizable-image-node-view {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -74,25 +63,25 @@
   width: 100%;
 }
 
-.media-node-view .container {
+.react-beautiful-editor .resizable-image-node-view .container {
   width: fit-content;
   display: flex;
   position: relative;
 }
 
-.media-node-view .justify-center {
+.react-beautiful-editor .resizable-image-node-view .justify-center {
   justify-content: center;
 }
 
-.media-node-view .justify-end {
+.react-beautiful-editor .resizable-image-node-view .justify-end {
   justify-content: flex-end;
 }
 
-.media-node-view .justify-start {
+.react-beautiful-editor.resizable-image-node-view .justify-start {
   justify-content: flex-start;
 }
 
-.horizontal-resize-handle {
+.react-beautiful-editor .horizontal-resize-handle {
   position: absolute;
   top: 40%;
   right: 0.25rem;
@@ -108,7 +97,7 @@
   background-color: #000;
 }
 
-.media-control-buttons {
+.react-beautiful-editor .resizable-image-buttons {
   display: flex;
   position: absolute;
   cursor: pointer;
@@ -134,7 +123,7 @@
   transition-timing-function: linear;
 }
 
-.media-control-buttons button {
+.react-beautiful-editor .resizable-image-buttons button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,11 +141,11 @@
   transition-timing-function: linear;
 }
 
-.media-control-buttons button:hover {
+.react-beautiful-editor .resizable-image-buttons button:hover {
   background-color: rgb(20, 20, 20, 0.1);
 }
 
-.bubble-menu-container {
+.react-beautiful-editor .bubble-menu-container {
   display: flex;
   flex-direction: row;
   /* border: 1px solid rgb(226, 232, 240); */
@@ -164,10 +153,10 @@
     rgba(15, 15, 15, 0.2) 0px 3px 6px, rgba(15, 15, 15, 0.4) 0px 9px 24px;
   border-radius: 0.25rem;
   padding: 1.75px;
-  background-color: var(--editor-menu-background);
+  background-color: var(--react-beautiful-editor-menu-background);
 }
 
-.bubble-menu-button {
+.react-beautiful-editor .editor-bubble-menu-button {
   width: 1.75rem;
   height: 1.75rem;
   padding: 0;
@@ -183,11 +172,11 @@
   border-radius: 0.25rem;
 }
 
-.bubble-menu-button:hover {
-  color: var(--editor-menu-item-text);
+.react-beautiful-editor .editor-bubble-menu-button:hover {
+  color: var(--react-beautiful-editor-menu-item-text);
 }
 
-.bubble-menu-input {
+.react-beautiful-editor .bubble-menu-input {
   width: 100%;
   height: 1.75rem;
   padding: 0;
@@ -202,35 +191,35 @@
   transition-timing-function: linear;
 }
 
-.ProseMirror iframe {
+.react-beautiful-editor .ProseMirror iframe {
   border: 0px solid #000;
   border-radius: 10px;
 }
 
-ul[data-type="taskList"] {
+.react-beautiful-editor ul[data-type="taskList"] {
   list-style: none;
   padding: 0;
 }
-ul[data-type="taskList"] p {
+.react-beautiful-editor ul[data-type="taskList"] p {
   margin: 0;
 }
-ul[data-type="taskList"] li {
+.react-beautiful-editor ul[data-type="taskList"] li {
   display: flex;
 }
-ul[data-type="taskList"] li > label {
+.react-beautiful-editor ul[data-type="taskList"] li > label {
   flex: 0 0 auto;
   margin-right: 0.5rem;
   user-select: none;
 }
-ul[data-type="taskList"] li > div {
+.react-beautiful-editor ul[data-type="taskList"] li > div {
   flex: 1 1 auto;
 }
-li[data-checked="true"] {
-  color: var(--editor-list-checked-text);
+.react-beautiful-editor li[data-checked="true"] {
+  color: var(--react-beautiful-editor-list-checked-text);
   text-decoration: line-through;
 }
 
-.i-mdi-delete {
+.react-beautiful-editor .i-mdi-delete {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24' display='inline-block' vertical-align='middle' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12Z'/%3E%3C/svg%3E");
   -webkit-mask: var(--un-icon) no-repeat;
   mask: var(--un-icon) no-repeat;
@@ -244,7 +233,7 @@ li[data-checked="true"] {
   height: 1em;
 }
 
-.i-mdi-format-align-center {
+.react-beautiful-editor .i-mdi-format-align-center {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24' display='inline-block' vertical-align='middle' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M3 3h18v2H3V3m4 4h10v2H7V7m-4 4h18v2H3v-2m4 4h10v2H7v-2m-4 4h18v2H3v-2Z'/%3E%3C/svg%3E");
   -webkit-mask: var(--un-icon) no-repeat;
   mask: var(--un-icon) no-repeat;
@@ -258,7 +247,7 @@ li[data-checked="true"] {
   height: 1em;
 }
 
-.i-mdi-format-align-left {
+.react-beautiful-editor .i-mdi-format-align-left {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24' display='inline-block' vertical-align='middle' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M3 3h18v2H3V3m0 4h12v2H3V7m0 4h18v2H3v-2m0 4h12v2H3v-2m0 4h18v2H3v-2Z'/%3E%3C/svg%3E");
   -webkit-mask: var(--un-icon) no-repeat;
   mask: var(--un-icon) no-repeat;
@@ -272,7 +261,7 @@ li[data-checked="true"] {
   height: 1em;
 }
 
-.i-mdi-format-align-right {
+.react-beautiful-editor .i-mdi-format-align-right {
   --un-icon: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24' display='inline-block' vertical-align='middle' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M3 3h18v2H3V3m6 4h12v2H9V7m-6 4h18v2H3v-2m6 4h12v2H9v-2m-6 4h18v2H3v-2Z'/%3E%3C/svg%3E");
   -webkit-mask: var(--un-icon) no-repeat;
   mask: var(--un-icon) no-repeat;

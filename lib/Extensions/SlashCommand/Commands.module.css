@@ -1,11 +1,11 @@
 .menu {
   display: flex;
   flex-direction: column;
-  box-shadow: var(--editor-menu-box-shadow);
+  box-shadow: var(--react-beautiful-editor-menu-box-shadow);
   border-radius: 10px;
   padding: 4px;
   width: 20rem;
-  background-color: var(--editor-menu-background);
+  background-color: var(--react-beautiful-editor-menu-background);
   height: 30vh;
   overflow: auto;
 }
@@ -41,7 +41,7 @@
 .name {
   font-size: 14px;
   font-weight: 400;
-  color: var(--editor-menu-item-text);
+  color: var(--react-beautiful-editor-menu-item-text);
 }
 
 .description {
@@ -51,9 +51,9 @@
 }
 
 .item:hover {
-  background-color: var(--editor-menu-item-hover);
+  background-color: var(--react-beautiful-editor-menu-item-hover);
 }
 
 .selected {
-  background-color: var(--editor-menu-item-hover);
+  background-color: var(--react-beautiful-editor-menu-item-hover);
 }

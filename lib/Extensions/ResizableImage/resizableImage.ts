@@ -1,11 +1,11 @@
 import { mergeAttributes, Node, nodeInputRule } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 
-import { ResizableMediaNodeView } from "./ResizableImageNodeView";
+import { ResizableImageNodeView } from "./ResizableImageNodeView";
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
-    resizableMedia: {
+    resizableImage: {
       /**
        * Set media
        */
@@ -34,8 +34,8 @@ export const IMAGE_INPUT_REGEX =
 export const VIDEO_INPUT_REGEX =
   /!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\)/;
 
-export const ResizableMedia = Node.create<MediaOptions>({
-  name: "resizableMedia",
+export const ResizableImage = Node.create<MediaOptions>({
+  name: "resizableImage",
 
   addOptions() {
     return {
@@ -167,7 +167,7 @@ export const ResizableMedia = Node.create<MediaOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ResizableMediaNodeView);
+    return ReactNodeViewRenderer(ResizableImageNodeView);
   },
 
   addInputRules() {

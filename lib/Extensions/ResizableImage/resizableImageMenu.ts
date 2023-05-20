@@ -1,7 +1,7 @@
 /* @unocss-include */
 // import { IconAlignCenter, IconAlignLeft, IconAlignRight, IconFloatLeft, IconFloatRight, IconDelete } from '~/assets'
 
-interface ResizableMediaAction {
+interface ResizableImageAction {
   tooltip: string;
   icon?: string;
   action?: (updateAttributes: (o: Record<string, any>) => any) => void;
@@ -9,7 +9,7 @@ interface ResizableMediaAction {
   delete?: (d: () => void) => void;
 }
 
-export const resizableMediaActions: ResizableMediaAction[] = [
+export const resizableImageActions: ResizableImageAction[] = [
   {
     tooltip: "Align left",
     action: (updateAttributes) =>

@@ -29,47 +29,47 @@ const Bubble = ({ editor }: Props) => {
             }}
           >
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => editor.chain().focus().toggleBold().run()}
               style={{
                 fontWeight: "bold",
                 backgroundColor: editor.isActive("bold")
-                  ? "var(--editor-menu-item-hover)"
+                  ? "var(--react-beautiful-editor-menu-item-hover)"
                   : "transparent",
               }}
             >
               B
             </button>
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => editor.chain().focus().toggleItalic().run()}
               style={{
                 fontStyle: "italic",
                 backgroundColor: editor.isActive("italic")
-                  ? "var(--editor-menu-item-hover)"
+                  ? "var(--react-beautiful-editor-menu-item-hover)"
                   : "transparent",
               }}
             >
               i
             </button>
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => editor.chain().focus().toggleStrike().run()}
               style={{
                 textDecoration: "line-through",
                 backgroundColor: editor.isActive("strike")
-                  ? "var(--editor-menu-item-hover)"
+                  ? "var(--react-beautiful-editor-menu-item-hover)"
                   : "transparent",
               }}
             >
               S
             </button>
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => editor.chain().focus().toggleHighlight().run()}
               style={{
                 backgroundColor: editor.isActive("highlight")
-                  ? "var(--editor-menu-item-hover)"
+                  ? "var(--react-beautiful-editor-menu-item-hover)"
                   : "transparent",
               }}
             >
@@ -87,11 +87,11 @@ const Bubble = ({ editor }: Props) => {
               </svg>
             </button>
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={onClickLink}
               style={{
                 backgroundColor: editor.isActive("link")
-                  ? "var(--editor-menu-item-hover)"
+                  ? "var(--react-beautiful-editor-menu-item-hover)"
                   : "transparent",
               }}
             >
@@ -118,7 +118,7 @@ const Bubble = ({ editor }: Props) => {
               onChange={(e) => setLink(e.target.value)}
             />
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => {
                 editor
                   .chain()
@@ -142,7 +142,7 @@ const Bubble = ({ editor }: Props) => {
               </svg>
             </button>
             <button
-              className="bubble-menu-button"
+              className="editor-bubble-menu-button"
               onClick={() => {
                 setAddingLink(false);
                 setLink("");

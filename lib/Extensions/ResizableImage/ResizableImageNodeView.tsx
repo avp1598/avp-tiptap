@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewWrapper } from "@tiptap/react";
-import { resizableMediaActions } from "./resizableImageMenu";
+import { resizableImageActions } from "./resizableImageMenu";
 
 let lastClientX: number;
 
-export const ResizableMediaNodeView = ({
+export const ResizableImageNodeView = ({
   node,
   updateAttributes,
   deleteNode,
+  editor,
 }: NodeViewProps) => {
   const [mediaType, setMediaType] = useState<"img" | "video">();
   const [isHover, setIsHover] = useState(false);
@@ -32,7 +33,7 @@ export const ResizableMediaNodeView = ({
   const calculateMediaActionActiveStates = () => {
     const activeStates: Record<string, boolean> = {};
 
-    resizableMediaActions.forEach(({ tooltip, isActive }) => {
+    resizableImageActions.forEach(({ tooltip, isActive }) => {
       activeStates[tooltip] = !!isActive?.(node.attrs);
     });
 
@@ -170,7 +171,7 @@ export const ResizableMediaNodeView = ({
   return (
     <NodeViewWrapper
       as="article"
-      className="media-node-view"
+      className="resizable-image-node-view"
       style={{
         justifyContent:
           node.attrs.dataAlign !== "center"
@@ -192,55 +193,47 @@ export const ResizableMediaNodeView = ({
             height={node.attrs.height}
           />
         )}
-
-        {mediaType === "video" && (
-          <video
-            ref={resizableImgRef as any}
-            controls
-            width={node.attrs.width}
-            height={node.attrs.height}
-          >
-            <source src={node.attrs.src} />
-          </video>
+        {editor.isEditable && (
+          <div
+            className={`horizontal-resize-handle`}
+            title="Resize"
+            onClick={({ clientX }) => setLastClientX(clientX)}
+            onMouseDown={startHorizontalResize}
+            onMouseUp={stopHorizontalResize}
+            style={{
+              opacity: isHover ? 0.5 : 0,
+            }}
+          />
         )}
 
-        <div
-          className={`horizontal-resize-handle`}
-          title="Resize"
-          onClick={({ clientX }) => setLastClientX(clientX)}
-          onMouseDown={startHorizontalResize}
-          onMouseUp={stopHorizontalResize}
-          style={{
-            opacity: isHover ? 0.5 : 0,
-          }}
-        />
-
-        <section
-          className={`media-control-buttons`}
-          style={{
-            opacity: isHover ? 1 : 0,
-          }}
-        >
-          {resizableMediaActions.map((btn) => {
-            return (
-              // TODO: figure out why tooltips are not working
-              <button
-                key={btn.tooltip}
-                type="button"
-                className={`btn rounded-none h-8 px-2 ${
-                  mediaActionActiveState[btn.tooltip] ? "active" : ""
-                }`}
-                onClick={() =>
-                  btn.tooltip === "Delete"
-                    ? deleteNode()
-                    : btn.action?.(updateAttributes)
-                }
-              >
-                <i className={`${btn.icon} scale-150`} />
-              </button>
-            );
-          })}
-        </section>
+        {editor.isEditable && (
+          <section
+            className={`resizable-image-buttons`}
+            style={{
+              opacity: isHover ? 1 : 0,
+            }}
+          >
+            {resizableImageActions.map((btn) => {
+              return (
+                // TODO: figure out why tooltips are not working
+                <button
+                  key={btn.tooltip}
+                  type="button"
+                  className={`btn rounded-none h-8 px-2 ${
+                    mediaActionActiveState[btn.tooltip] ? "active" : ""
+                  }`}
+                  onClick={() =>
+                    btn.tooltip === "Delete"
+                      ? deleteNode()
+                      : btn.action?.(updateAttributes)
+                  }
+                >
+                  <i className={`${btn.icon} scale-150`} />
+                </button>
+              );
+            })}
+          </section>
+        )}
       </div>
     </NodeViewWrapper>
   );
