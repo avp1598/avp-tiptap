@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.6.1
+
+### Patch Changes
+
+- 7f25b69: code editor fix
+
 ## 0.6.0
 
 ### Minor Changes
