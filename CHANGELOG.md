@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.6.0
+
+### Minor Changes
+
+- 314bce2: minor fixes
+
 ## 0.5.0
 
 ### Minor Changes
