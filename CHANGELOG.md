@@ -1,5 +1,11 @@
 # avp-tiptap
 
+## 0.5.0
+
+### Minor Changes
+
+- 3b96370: embeds
+
 ## 0.4.0
 
 ### Minor Changes
